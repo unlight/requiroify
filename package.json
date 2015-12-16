@@ -1,14 +1,14 @@
 {
   "name": "requiroify",
   "description": "Advanced version of require for node.js",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "index.js",
   "scripts": {},
   "author": "",
   "license": "Beerware",
   "dependencies": {
     "browserify-transform-tools": "^1.5.0",
-    "phpfn": "^1.0.0",
+    "lodash.trim": "^3.0.1",
     "requiro": "^1.2.0"
   },
   "devDependencies": {},

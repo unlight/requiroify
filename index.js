@@ -1,8 +1,8 @@
 var makeRequireTransform = require("browserify-transform-tools").makeRequireTransform;
 var requiroResolve = require("requiro").resolve;
-var phpfn = require("phpfn");
-var trim = phpfn("trim");
+var trim = require("lodash.trim");
 var dirname = require("path").dirname;
+var pathrelative = require("path").relative;
 
 module.exports = makeRequireTransform("requiroifyTransform", {
 	evaluateArguments: false
@@ -14,8 +14,9 @@ function requiroify(args, opts, done) {
 	var newPath = requiroResolve(path, {
 		filedir: filedir
 	});
-	if (newPath.slice(0, filedir.length) === filedir) {
-		newPath = "./" + newPath.slice(filedir.length + 1);
+	if (path !== newPath) {
+		var relativePath = pathrelative(filedir, newPath);
+		newPath = "./" + relativePath;
 	}
 	return done(null, "require(" + JSON.stringify(newPath) + ")");
 }
